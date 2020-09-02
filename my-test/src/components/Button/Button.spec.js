@@ -14,7 +14,6 @@ describe("<Button />", () => {
 
     // then
     expect(component.getByText("TestButton")).toBeInTheDocument();
-    expect(component.baseElement).toMatchSnapshot("prop text");
   });
 
   it("should return the state text", () => {
@@ -22,15 +21,12 @@ describe("<Button />", () => {
     const propText = "TestButton";
 
     // when
-    const { getByText, baseElement, rerender } = render(
-      <Button text={propText} />
-    );
+    const { getByText, rerender } = render(<Button text={propText} />);
 
     fireEvent.click(getByText(propText));
     rerender(<Button text={propText} />);
 
     // then
     expect(getByText("Botão foi clicado!")).toBeInTheDocument();
-    expect(baseElement).toMatchSnapshot("state text");
   });
 });
